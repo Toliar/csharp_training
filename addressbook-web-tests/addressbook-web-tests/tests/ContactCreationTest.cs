@@ -10,14 +10,14 @@ namespace WebAddressbookTests
         [Test]
         public void  CreatesContact()
         {
-            OpenMainPage();
-            Login(new AccountData());
-            GoToNewContactPage();
+            app.Navigate.OpenMainPage();
+            app.Auth.Login(new AccountData());
+            app.Navigate.GoToNewContactPage();
             ContactData newcontact = new ContactData();
             newcontact.Firstname = "111";
             newcontact.Lastname = "222";
-            FillContactInfo(newcontact);
-            LogOut();
+            app.Contacts.FillContactInfo(newcontact);
+            app.Auth.LogOut();
         }
 
         
