@@ -22,13 +22,15 @@ namespace WebAddressbookTests
 
         public AppManager()
         {
+            driver = new FirefoxDriver(new FirefoxBinary("C:\\Users\\a.rudakov\\Downloads\\firefoxsdk\\bin\\firefox.exe"), new FirefoxProfile());
+            baseURL = "http://localhost:8889/";
             loginHelper = new LoginHelper(driver);
             navigate = new NavigationHelper(driver, baseURL);
             groupHelper = new GroupHelper(driver);
             contactHelper = new ContactHelper(driver);
 
-            driver = new FirefoxDriver(new FirefoxBinary("C:\\Users\\a.rudakov\\Downloads\\firefoxsdk\\bin\\firefox.exe"), new FirefoxProfile());
-            baseURL = "http://localhost:8889/";
+            
+            
             
         }
         public void Stop()
