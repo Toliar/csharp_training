@@ -21,26 +21,26 @@ namespace WebAddressbookTests
 
         public void SubmitGroupCreation()
         {
-            driver.FindElement(By.Name("submit")).Click();
+            FindElementByName("submit").Click();
         }
 
         public void FillGroupForm(GroupData group)
         {
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            FindElementByName("group_name").Clear();
+            FindElementByName("group_name").SendKeys(group.Name);
+            FindElementByName("group_header").Clear();
+            FindElementByName("group_header").SendKeys(group.Header);
+            FindElementByName("group_footer").Clear();
+            FindElementByName("group_footer").SendKeys(group.Footer);
         }
 
         public void InitNewGroupCreation()
         {
-            driver.FindElement(By.Name("new")).Click();
+            FindElementByName("new").Click();
         }
         public void ReturnToGroupPage()
         {
-            driver.FindElement(By.LinkText("group page")).Click();
+            FindElementByLinkText("group page").Click();
         }
 
     }

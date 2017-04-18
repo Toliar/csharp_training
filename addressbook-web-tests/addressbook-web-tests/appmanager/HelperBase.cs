@@ -8,11 +8,29 @@ namespace WebAddressbookTests
 {
     public class HelperBase
     {
-        protected IWebDriver driver;
+        private IWebDriver driver;
+
 
         public HelperBase(IWebDriver driver)
         {
             this.driver = driver;
         }
+        protected IWebElement FindElementByName(string name)
+        {
+            return this.driver.FindElement(By.Name(name));
+        }
+        protected IWebElement FindElementByLinkText(string text)
+        {
+            return this.driver.FindElement(By.LinkText(text));
+        }
+        protected void Navigate(string url)
+        {
+            driver.Navigate().GoToUrl(url);
+        }
+        protected IWebElement FindElementByCssSelector(string selector)
+        {
+            return this.driver.FindElement(By.CssSelector(selector));
+        }
+
     }
 }

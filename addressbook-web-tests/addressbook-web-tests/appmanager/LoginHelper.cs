@@ -20,15 +20,15 @@ namespace WebAddressbookTests
         }
         public void Login(AccountData account)
         {
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys(account.Username);
-            driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
-            driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
+            FindElementByName("user").Clear();
+            FindElementByName("user").SendKeys(account.Username);
+            FindElementByName("pass").Clear();
+            FindElementByName("pass").SendKeys(account.Password);
+            FindElementByCssSelector("input[type=\"submit\"]").Click();
         }
         public void LogOut()
         {
-            driver.FindElement(By.LinkText("Logout")).Click();
+            FindElementByLinkText("Logout").Click();
         }
 
 

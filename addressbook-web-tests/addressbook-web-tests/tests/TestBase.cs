@@ -20,9 +20,7 @@ namespace WebAddressbookTests
         public void SetupTest()
         {
             app = new AppManager();
-            
-
-            
+                       
         }
 
         [TearDown]

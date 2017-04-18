@@ -15,23 +15,23 @@ namespace WebAddressbookTests
       
         private string baseURL;
 
-        public NavigationHelper(IWebDriver driver, string baseURL):base (driver)
+        public NavigationHelper(IWebDriver driver, string baseURL) : base (driver)
         {
            
             this.baseURL = baseURL;
         }
         public void GoToNewContactPage()
         {
-            driver.FindElement(By.LinkText("add new")).Click();
+            FindElementByLinkText("add new").Click();
         }
         
         public void GoToGroupPage()
         {
-            driver.FindElement(By.LinkText("groups")).Click();
+            FindElementByLinkText("groups").Click();
         }
         public void OpenMainPage()
         {
-            driver.Navigate().GoToUrl(baseURL + "addressbook/");
+            Navigate(baseURL + "addressbook/");
         }
 
     }
