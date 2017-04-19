@@ -12,7 +12,7 @@ namespace WebAddressbookTests
 {
     public class ContactHelper:HelperBase
     {
-        public ContactHelper(IWebDriver driver) :base(driver) {
+        public ContactHelper(AppManager manager) :base(manager) {
 
         }
         public void FillContactInfo(ContactData contactdata)

@@ -80,6 +80,7 @@
     <Compile Include="tests\ContactCreationTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

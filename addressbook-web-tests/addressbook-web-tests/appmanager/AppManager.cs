@@ -8,6 +8,12 @@ namespace WebAddressbookTests
     {
         protected IWebDriver driver;
         protected string baseURL;
+        public IWebDriver Driver {
+            get
+            {
+                return driver;
+            }
+        }
 
         protected LoginHelper loginHelper;
         protected NavigationHelper navigate;
@@ -18,10 +24,10 @@ namespace WebAddressbookTests
         {
             driver = new FirefoxDriver(new FirefoxBinary("C:\\Users\\a.rudakov\\Downloads\\firefoxsdk\\bin\\firefox.exe"), new FirefoxProfile());
             baseURL = "http://localhost:8889/";
-            loginHelper = new LoginHelper(driver);
-            navigate = new NavigationHelper(driver, baseURL);
-            groupHelper = new GroupHelper(driver);
-            contactHelper = new ContactHelper(driver);
+            loginHelper = new LoginHelper(this);
+            navigate = new NavigationHelper(this, baseURL);
+            groupHelper = new GroupHelper(this);
+            contactHelper = new ContactHelper(this);
 
             
             
@@ -68,6 +74,7 @@ namespace WebAddressbookTests
             }
         }
 
+        
     }
 
 }
