@@ -17,11 +17,11 @@ namespace WebAddressbookTests
         }
         public void FillContactInfo(ContactData contactdata)
         {
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contactdata.Firstname);
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contactdata.Lastname);
-            driver.FindElement(By.Name("submit")).Click();
+            FindElementByName("firstname").Clear();
+            FindElementByName("firstname").SendKeys(contactdata.Firstname);
+            FindElementByName("lastname").Clear();
+            FindElementByName("lastname").SendKeys(contactdata.Lastname);
+            FindElementByName("submit").Click();
         }
     }
 }
