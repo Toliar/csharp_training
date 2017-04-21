@@ -30,5 +30,10 @@ namespace WebAddressbookTests
             return this.driver.FindElement(By.CssSelector(selector));
         }
 
+        protected IWebElement FindElementByXPath(int index)
+        {
+           return this.driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]"));
+        }
+
     }
 }

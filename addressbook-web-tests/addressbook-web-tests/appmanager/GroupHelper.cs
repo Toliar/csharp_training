@@ -33,6 +33,23 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public GroupHelper DeleteGroup(int index)
+        {
+            manager.Navigate.GoToGroupPage();
+            SelectGroup(index);
+            DeleteSelectedGroup();
+            ReturnToGroupPage();
+            manager.Auth.LogOut();
+
+            return this;
+        }
+
+        private GroupHelper DeleteSelectedGroup()
+        {
+            FindElementByName("delete").Click();
+            return this;
+        }
+
         public GroupHelper SubmitGroupModification()
         {
             FindElementByName("update").Click();
@@ -47,7 +64,7 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])["+ index +"]")).Click();
+            FindElementByXPath(index).Click();
             return this;
         }
 
