@@ -17,6 +17,11 @@ namespace WebAddressbookTests
         {
             return this.driver.FindElement(By.Name(name));
         }
+        protected IWebElement FindElementById(string index)
+        {
+            return this.driver.FindElement(By.Id(index));
+        }
+
         protected IWebElement FindElementByLinkText(string text)
         {
             return this.driver.FindElement(By.LinkText(text));
@@ -34,6 +39,9 @@ namespace WebAddressbookTests
         {
            return this.driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]"));
         }
+       
+
+
 
     }
 }

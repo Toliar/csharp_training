@@ -25,6 +25,14 @@ namespace WebAddressbookTests
         {
             Navigate(baseURL + "addressbook/");
         }
+        public void GoToContactPage()
+        {
+            Navigate(baseURL + "addressbook/");
+        }
+
+
+
+
 
     }
 }

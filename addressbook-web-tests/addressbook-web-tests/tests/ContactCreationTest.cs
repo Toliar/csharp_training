@@ -11,8 +11,8 @@ namespace WebAddressbookTests
         public void  CreatesContact()
         {
             ContactData newcontact = new ContactData();
-            newcontact.Firstname = "111";
-            newcontact.Lastname = "222";
+            newcontact.Firstname = "first";
+            newcontact.Lastname = "last";
 
             app.Navigate.GoToNewContactPage();
             app.Contacts.FillContactInfo(newcontact);

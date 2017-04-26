@@ -15,13 +15,70 @@ namespace WebAddressbookTests
         public ContactHelper(AppManager manager) :base(manager) {
 
         }
-        public void FillContactInfo(ContactData contactdata)
+
+        public ContactHelper DeleteContact(string text)
+        {
+            manager.Navigate.GoToContactPage();
+            SelectContact(text).
+            ClickDeleteButton();
+            driver.SwitchTo().Alert().Accept();
+            manager.Auth.LogOut();
+            return this;
+        }
+
+        public ContactHelper ModifyContact(ContactData contactdata)
+        {
+            manager.Navigate.GoToContactPage();
+            ClickEditButton();
+            ModifyContactData(contactdata);
+            FindElementByName("update").Click();
+            manager.Auth.LogOut();
+            return this;
+        }
+        public ContactHelper ModifyContactData(ContactData contactdata)
+        {
+            FindElementByName("firstname").Clear();
+            FindElementByName("firstname").SendKeys(contactdata.Firstname);
+            FindElementByName("lastname").Clear();
+            FindElementByName("lastname").SendKeys(contactdata.Lastname);
+            
+            return this;
+        }
+
+
+        public ContactHelper FillContactInfo(ContactData contactdata)
         {
             FindElementByName("firstname").Clear();
             FindElementByName("firstname").SendKeys(contactdata.Firstname);
             FindElementByName("lastname").Clear();
             FindElementByName("lastname").SendKeys(contactdata.Lastname);
             FindElementByName("submit").Click();
+            return this;
+
         }
+
+        public ContactHelper SelectContact(string text)
+        {
+            var allRows = driver.FindElements(By.CssSelector("table#maintable tr[name=entry]"));
+            foreach (var row in allRows)
+            {
+                var lastName = row.FindElement(By.CssSelector("td:nth-of-type(2)")).Text;
+                if (lastName == text)
+                    row.FindElement(By.CssSelector("td>input")).Click();
+            }
+            //FindElementById(Id).Click();
+            return this;
+        }
+        protected ContactHelper ClickDeleteButton()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
+        }
+        protected ContactHelper ClickEditButton()
+        {
+            driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
+            return this;
+        }
+
     }
 }
