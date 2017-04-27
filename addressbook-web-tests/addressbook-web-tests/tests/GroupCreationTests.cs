@@ -18,7 +18,7 @@ namespace WebAddressbookTests
 
             
             app.Groups.Create(group);
-            app.Auth.LogOut();
+          //  app.Auth.LogOut();
         }
         [Test]
         public void CreatesEmptyGroup()
@@ -30,7 +30,7 @@ namespace WebAddressbookTests
 
             
             app.Groups.Create(group);
-            app.Auth.LogOut();
+           // app.Auth.LogOut();
         }
 
 

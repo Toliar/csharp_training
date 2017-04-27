@@ -39,60 +39,60 @@ namespace WebAddressbookTests
             SelectGroup(index);
             DeleteSelectedGroup();
             ReturnToGroupPage();
-            manager.Auth.LogOut();
+         //   manager.Auth.LogOut();
 
             return this;
         }
 
         private GroupHelper DeleteSelectedGroup()
         {
-            FindElementByName("delete").Click();
+            driver.FindElement(By.Name("delete")).Click();
             return this;
         }
 
         public GroupHelper SubmitGroupModification()
         {
-            FindElementByName("update").Click();
+            driver.FindElement(By.Name("update")).Click();
             return this;
         }
 
         public GroupHelper InitGroupModification()
         {
-            FindElementByName("edit").Click();
+            driver.FindElement(By.Name("edit")).Click();
             return this;
         }
 
         public GroupHelper SelectGroup(int index)
         {
-            FindElementByXPath(index).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
         }
 
         public GroupHelper SubmitGroupCreation()
         {
-            FindElementByName("submit").Click();
+            driver.FindElement(By.Name("submit")).Click();
             return this;
         }
 
         public GroupHelper FillGroupForm(GroupData group)
         {
-            FindElementByName("group_name").Clear();
-            FindElementByName("group_name").SendKeys(group.Name);
-            FindElementByName("group_header").Clear();
-            FindElementByName("group_header").SendKeys(group.Header);
-            FindElementByName("group_footer").Clear();
-            FindElementByName("group_footer").SendKeys(group.Footer);
+           
+            Type(By.Name("group_name"), group.Name);
+            Type(By.Name("group_header"), group.Header);
+            Type(By.Name("group_footer"), group.Footer);
             return this;
         }
 
+        
+
         public GroupHelper InitNewGroupCreation()
         {
-            FindElementByName("new").Click();
+            driver.FindElement(By.Name("new")).Click();
             return this;
         }
         public GroupHelper ReturnToGroupPage()
         {
-            FindElementByLinkText("group page").Click();
+            driver.FindElement(By.LinkText("group page")).Click();
             return this;
         }
 

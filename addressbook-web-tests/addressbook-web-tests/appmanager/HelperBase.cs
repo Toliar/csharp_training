@@ -39,7 +39,15 @@ namespace WebAddressbookTests
         {
            return this.driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]"));
         }
-       
+        public void Type(By locator, string text)
+        {
+            if (text != null)
+            {
+                driver.FindElement(locator).Clear();
+                driver.FindElement(locator).SendKeys(text);
+            }
+
+        }
 
 
 

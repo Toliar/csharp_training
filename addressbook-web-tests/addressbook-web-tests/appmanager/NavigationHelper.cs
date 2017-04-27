@@ -14,12 +14,12 @@ namespace WebAddressbookTests
         }
         public void GoToNewContactPage()
         {
-            FindElementByLinkText("add new").Click();
+            driver.FindElement(By.LinkText("add new")).Click();
         }
         
         public void GoToGroupPage()
         {
-            FindElementByLinkText("groups").Click();
+            driver.FindElement(By.LinkText("groups")).Click();
         }
         public void OpenMainPage()
         {

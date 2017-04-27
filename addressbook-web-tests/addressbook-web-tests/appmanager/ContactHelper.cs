@@ -22,7 +22,7 @@ namespace WebAddressbookTests
             SelectContact(text).
             ClickDeleteButton();
             driver.SwitchTo().Alert().Accept();
-            manager.Auth.LogOut();
+          //  manager.Auth.LogOut();
             return this;
         }
 
@@ -32,26 +32,22 @@ namespace WebAddressbookTests
             ClickEditButton();
             ModifyContactData(contactdata);
             FindElementByName("update").Click();
-            manager.Auth.LogOut();
+        //    manager.Auth.LogOut();
             return this;
         }
         public ContactHelper ModifyContactData(ContactData contactdata)
         {
-            FindElementByName("firstname").Clear();
-            FindElementByName("firstname").SendKeys(contactdata.Firstname);
-            FindElementByName("lastname").Clear();
-            FindElementByName("lastname").SendKeys(contactdata.Lastname);
-            
+            Type(By.Name("firstname"), contactdata.Firstname);
+            Type(By.Name("lastname"), contactdata.Lastname);
+                       
             return this;
         }
 
 
         public ContactHelper FillContactInfo(ContactData contactdata)
         {
-            FindElementByName("firstname").Clear();
-            FindElementByName("firstname").SendKeys(contactdata.Firstname);
-            FindElementByName("lastname").Clear();
-            FindElementByName("lastname").SendKeys(contactdata.Lastname);
+            Type(By.Name("firstname"), contactdata.Firstname);
+            Type(By.Name("lastname"), contactdata.Lastname);
             FindElementByName("submit").Click();
             return this;
 

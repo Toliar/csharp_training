@@ -6,38 +6,11 @@ namespace WebAddressbookTests
     {
         protected AppManager app;
 
-         
-
         [SetUp]
         public void SetupTest()
         {
-            app = new AppManager();
-
-            app.Navigate.OpenMainPage();
-            app.Auth.Login(new AccountData("admin", "secret"));
+            app = AppManager.GetInstance();
 
         }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-
-            app.Stop();
-        }
-
-
-        
-
-        
-
-
-
-        
-
-      
-
-      
-
-       
     }
 }
