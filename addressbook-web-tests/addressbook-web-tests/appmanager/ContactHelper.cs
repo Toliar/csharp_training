@@ -16,10 +16,10 @@ namespace WebAddressbookTests
 
         }
 
-        public ContactHelper DeleteContact(string text)
+        public ContactHelper DeleteContact(string index)
         {
             manager.Navigate.GoToContactPage();
-            SelectContact(text).
+            SelectContact(index).
             ClickDeleteButton();
             driver.SwitchTo().Alert().Accept();
           //  manager.Auth.LogOut();
@@ -53,15 +53,16 @@ namespace WebAddressbookTests
 
         }
 
-        public ContactHelper SelectContact(string text)
+        public ContactHelper SelectContact(string index)
         {
-            var allRows = driver.FindElements(By.CssSelector("table#maintable tr[name=entry]"));
-            foreach (var row in allRows)
-            {
-                var lastName = row.FindElement(By.CssSelector("td:nth-of-type(2)")).Text;
-                if (lastName == text)
-                    row.FindElement(By.CssSelector("td>input")).Click();
-            }
+            driver.FindElement(By.Id(index)).Click();
+            //  var allRows = driver.FindElements(By.CssSelector("table#maintable tr[name=entry]"));
+            //  foreach (var row in allRows)
+            //  {
+            //      var lastName = row.FindElement(By.CssSelector("td:nth-of-type(2)")).Text;
+            //      if (lastName == text)
+            //          row.FindElement(By.CssSelector("td>input")).Click();
+            //  }
             //FindElementById(Id).Click();
             return this;
         }
