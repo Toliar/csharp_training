@@ -13,8 +13,8 @@ namespace WebAddressbookTests
         [Test]
         public void DeleteContactTest()
         {
-            int index1 = 1;
-            string index = index1.ToString();
+            int index = 1;
+          //  string index = index1.ToString();
 
             app.Contacts.DeleteContact(index);
             

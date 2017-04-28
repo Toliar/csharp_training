@@ -16,7 +16,7 @@ namespace WebAddressbookTests
 
         }
 
-        public ContactHelper DeleteContact(string index)
+        public ContactHelper DeleteContact(int index)
         {
             manager.Navigate.GoToContactPage();
             SelectContact(index).
@@ -53,9 +53,10 @@ namespace WebAddressbookTests
 
         }
 
-        public ContactHelper SelectContact(string index)
+        public ContactHelper SelectContact(int index)
         {
-            driver.FindElement(By.Id(index)).Click();
+            
+            driver.FindElement(By.XPath($"(//input[@name='selected[]'])[{index}]")).Click();
             //  var allRows = driver.FindElements(By.CssSelector("table#maintable tr[name=entry]"));
             //  foreach (var row in allRows)
             //  {
