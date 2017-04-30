@@ -7,16 +7,12 @@ using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
-    [TestFixture]
-    class DeleteGroup : AuthTestBase
+    public class AuthTestBase : TestBase
     {
-        [Test]
-        public void DeleteGroupTest()
+        [SetUp]
+        public void SetupLogin()
         {
-            int index = 1;
-
-            app.Groups.DeleteGroup(index);
-
+            app.Auth.Login(new AccountData("admin", "secret"));
         }
     }
 }
