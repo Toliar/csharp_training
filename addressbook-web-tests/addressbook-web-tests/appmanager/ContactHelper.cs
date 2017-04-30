@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium;
 
 namespace WebAddressbookTests
 {
@@ -14,6 +6,14 @@ namespace WebAddressbookTests
     {
         public ContactHelper(AppManager manager) :base(manager) {
 
+        }
+
+        public ContactHelper CreateContact(ContactData newcontact)
+        {
+            manager.Navigate.GoToNewContactPage();
+            FillContactInfo(newcontact);
+           
+            return this;
         }
 
         public ContactHelper DeleteContact(int index)
@@ -55,8 +55,17 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact(int index)
         {
-            
+            if (IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]")) == false)
+            {
+                ContactData newcontact = new ContactData();
+                newcontact.Firstname = "first";
+                newcontact.Lastname = "last";
+
+                CreateContact(newcontact);
+                manager.Navigate.GoToContactPage();
+            }
             driver.FindElement(By.XPath($"(//input[@name='selected[]'])[{index}]")).Click();
+            return this;
             //  var allRows = driver.FindElements(By.CssSelector("table#maintable tr[name=entry]"));
             //  foreach (var row in allRows)
             //  {
@@ -65,7 +74,6 @@ namespace WebAddressbookTests
             //          row.FindElement(By.CssSelector("td>input")).Click();
             //  }
             //FindElementById(Id).Click();
-            return this;
         }
         protected ContactHelper ClickDeleteButton()
         {
@@ -74,6 +82,16 @@ namespace WebAddressbookTests
         }
         protected ContactHelper ClickEditButton()
         {
+            if (IsElementPresent(By.CssSelector("img[alt=\"Edit\"]")) == false)
+            {
+                ContactData newcontact = new ContactData();
+                newcontact.Firstname = "first";
+                newcontact.Lastname = "last";
+
+                CreateContact(newcontact);
+                manager.Navigate.GoToContactPage();
+            }
+
             driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
             return this;
         }

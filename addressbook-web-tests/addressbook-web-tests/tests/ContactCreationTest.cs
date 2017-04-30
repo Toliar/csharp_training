@@ -13,15 +13,14 @@ namespace WebAddressbookTests
             ContactData newcontact = new ContactData();
             newcontact.Firstname = "first";
             newcontact.Lastname = "last";
-
-            app.Navigate.GoToNewContactPage();
-            app.Contacts.FillContactInfo(newcontact);
-           // app.Auth.LogOut();
+            app.Contacts.CreateContact(newcontact);
+            // app.Auth.LogOut();
         }
 
         
 
-        
-        
+
+
+
     }
 }
