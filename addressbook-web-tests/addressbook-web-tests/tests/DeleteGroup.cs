@@ -1,9 +1,5 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
@@ -13,9 +9,13 @@ namespace WebAddressbookTests
         [Test]
         public void DeleteGroupTest()
         {
-            int index = 1;
+            int index = 0;
 
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
             app.Groups.DeleteGroup(index);
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups.RemoveAt(0);
+            Assert.AreEqual(oldGroups, newGroups);
 
         }
     }
