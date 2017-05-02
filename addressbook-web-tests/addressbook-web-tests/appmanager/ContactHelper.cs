@@ -55,15 +55,6 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact(int index)
         {
-            if (IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]")) == false)
-            {
-                ContactData newcontact = new ContactData();
-                newcontact.Firstname = "first";
-                newcontact.Lastname = "last";
-
-                CreateContact(newcontact);
-                manager.Navigate.GoToContactPage();
-            }
             driver.FindElement(By.XPath($"(//input[@name='selected[]'])[{index}]")).Click();
             return this;
             //  var allRows = driver.FindElements(By.CssSelector("table#maintable tr[name=entry]"));
@@ -82,19 +73,16 @@ namespace WebAddressbookTests
         }
         protected ContactHelper ClickEditButton()
         {
-            if (IsElementPresent(By.CssSelector("img[alt=\"Edit\"]")) == false)
-            {
-                ContactData newcontact = new ContactData();
-                newcontact.Firstname = "first";
-                newcontact.Lastname = "last";
-
-                CreateContact(newcontact);
-                manager.Navigate.GoToContactPage();
-            }
-
+           
             driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
             return this;
         }
+
+        public bool IsFirstContactExist(int index)
+        {
+            return IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]"));
+        }
+
 
     }
 }

@@ -24,10 +24,10 @@ namespace WebAddressbookTests
             }
             return Name == other.Name;
         }
-        public int GetHashCode()
+        public override int  GetHashCode()
         {
-            return 0;
-           //     Name.GetHashCode;
+            //  return 0;
+            return Name.GetHashCode();
         }
     //    public GroupData(string name,string header, string footer)
     //    {

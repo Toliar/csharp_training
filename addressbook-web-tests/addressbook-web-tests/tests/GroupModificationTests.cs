@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace WebAddressbookTests
 {
@@ -16,6 +11,14 @@ namespace WebAddressbookTests
             GroupData newData = new GroupData("zzz");
             newData.Header = null;
             newData.Footer = null;
+            int index = 0;
+
+            // Check if first group exist
+            if(app.Groups.IsGroupFirstGroupExist(index))
+            {
+                GroupData defaultData = new GroupData("1111");
+                app.Groups.Create(defaultData);
+            }
             app.Groups.Modify(0, newData);
         }
 

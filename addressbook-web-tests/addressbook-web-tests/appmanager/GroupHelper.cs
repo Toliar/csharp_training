@@ -77,13 +77,7 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int index)
         {
-            if (IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")) == false)
-            {
-                GroupData newData = new GroupData("1111");
-                Create(newData);
-            }
-
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index+1) + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]")).Click();
             return this;
         }
 
@@ -113,6 +107,10 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.LinkText("group page")).Click();
             return this;
+        }
+        public bool IsGroupFirstGroupExist(int index)
+        {
+            return IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]"));
         }
 
     }
