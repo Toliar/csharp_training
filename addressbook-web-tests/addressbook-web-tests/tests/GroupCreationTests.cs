@@ -17,9 +17,14 @@ namespace WebAddressbookTests
             group.Footer = "fff";
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             app.Groups.Create(group);
+
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
           //  app.Auth.LogOut();
         }
         [Test]
@@ -31,9 +36,14 @@ namespace WebAddressbookTests
             group.Footer = "";
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             app.Groups.Create(group);
+
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
             // app.Auth.LogOut();
         }
 
@@ -46,9 +56,14 @@ namespace WebAddressbookTests
             group.Footer = "";
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             app.Groups.Create(group);
+
             List<GroupData> newGroups = app.Groups.GetGroupList();
-            Assert.AreEqual(oldGroups.Count , newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
             // app.Auth.LogOut();
         }
 

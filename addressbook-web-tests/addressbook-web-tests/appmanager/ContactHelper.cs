@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using System.Collections.Generic;
+using OpenQA.Selenium;
 
 namespace WebAddressbookTests
 {
@@ -24,6 +26,19 @@ namespace WebAddressbookTests
             driver.SwitchTo().Alert().Accept();
           //  manager.Auth.LogOut();
             return this;
+        }
+
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+
+            manager.Navigate.GoToContactPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.XPath();
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.Text));
+            }
+            return contacts;
         }
 
         public ContactHelper ModifyContact(ContactData contactdata)
