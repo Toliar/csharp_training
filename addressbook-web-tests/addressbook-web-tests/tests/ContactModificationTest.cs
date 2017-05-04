@@ -26,8 +26,15 @@ namespace WebAddressbookTests
             changedcontact.Firstname = "4444";
             changedcontact.Lastname = "55555";
 
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
 
             app.Contacts.ModifyContact(changedcontact);
+
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts[0] = changedcontact;
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
 
 
         } 

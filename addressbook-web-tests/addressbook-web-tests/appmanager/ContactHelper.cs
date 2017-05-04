@@ -33,11 +33,23 @@ namespace WebAddressbookTests
             List<ContactData> contacts = new List<ContactData>();
 
             manager.Navigate.GoToContactPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.XPath();
-            foreach (IWebElement element in elements)
+
+            ICollection<IWebElement> rows = driver.FindElements(By.CssSelector("[name=entry]"));
+            foreach (IWebElement item in rows)
             {
-                contacts.Add(new ContactData(element.Text));
+                ContactData cnt = new ContactData()
+                {
+                    Firstname = item.FindElement(By.XPath(".//td[3]")).Text,
+                    Lastname = item.FindElement(By.XPath(".//td[2]")).Text
+                };
+                contacts.Add(cnt);
             }
+
+            //ICollection<IWebElement> elements = driver.FindElements(By.XPath();
+            //foreach (IWebElement element in elements)
+            //{
+             //   
+            //}
             return contacts;
         }
 

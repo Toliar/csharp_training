@@ -24,6 +24,7 @@ namespace WebAddressbookTests
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
+            
             Assert.AreEqual(oldGroups, newGroups);
           //  app.Auth.LogOut();
         }

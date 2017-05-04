@@ -14,6 +14,7 @@ namespace WebAddressbookTests
         public void DeleteContactTest()
         {
             int index = 1;
+
             if (!app.Contacts.IsFirstContactExist(index))
             {
                 ContactData defaultcontact = new ContactData();
@@ -22,9 +23,16 @@ namespace WebAddressbookTests
 
                 app.Contacts.CreateContact(defaultcontact);
             }
+            List<ContactData> oldContacts = app.Contacts.GetContactList();
 
             app.Contacts.DeleteContact(index);
-            
+
+            List<ContactData> newContacts = app.Contacts.GetContactList();
+            oldContacts.RemoveAt(index-1);
+         //   oldContacts.Sort();
+          //  newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
+
         }
 
     }
