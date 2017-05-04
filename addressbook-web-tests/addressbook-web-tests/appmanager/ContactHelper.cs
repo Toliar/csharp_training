@@ -37,12 +37,7 @@ namespace WebAddressbookTests
             ICollection<IWebElement> rows = driver.FindElements(By.CssSelector("[name=entry]"));
             foreach (IWebElement item in rows)
             {
-                ContactData cnt = new ContactData()
-                {
-                    Firstname = item.FindElement(By.XPath(".//td[3]")).Text,
-                    Lastname = item.FindElement(By.XPath(".//td[2]")).Text
-                };
-                contacts.Add(cnt);
+                contacts.Add( new ContactData(item.FindElement(By.XPath(".//td[3]")).Text, item.FindElement(By.XPath(".//td[2]")).Text));
             }
 
             //ICollection<IWebElement> elements = driver.FindElements(By.XPath();
