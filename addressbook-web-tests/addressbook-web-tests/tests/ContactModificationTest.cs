@@ -30,6 +30,8 @@ namespace WebAddressbookTests
 
             app.Contacts.ModifyContact(changedcontact);
 
+            Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactCount());
+
             List<ContactData> newContacts = app.Contacts.GetContactList();
             oldContacts[0] = changedcontact;
             oldContacts.Sort();
