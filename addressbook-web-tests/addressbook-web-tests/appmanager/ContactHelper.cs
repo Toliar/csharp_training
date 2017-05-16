@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using OpenQA.Selenium;
+using System.Text.RegularExpressions;
+
 
 namespace WebAddressbookTests
 {
@@ -158,7 +160,15 @@ namespace WebAddressbookTests
         {
             return IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]"));
         }
+        public int GetNumberOfSearchResults()
+        {
+            manager.Navigate.OpenMainPage();
+            string text = driver.FindElement(By.TagName("label")).Text;
+            Match m = new Regex(@"\d+").Match(text);
+            return Int32.Parse(m.Value);
 
+
+        }
 
     }
 }
