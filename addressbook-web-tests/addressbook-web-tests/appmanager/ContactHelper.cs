@@ -41,6 +41,33 @@ namespace WebAddressbookTests
             };
         }
 
+        public string GetContactInformationFromDetailedFormReverse(int index)
+        {
+            manager.Navigate.GoToContactPage();
+            ClickFullInformationButton(index);
+            
+            IWebElement element = driver.FindElement(By.Id("content"));
+            return Regex.Replace(element.Text, "[H:M:W:F: ()\\-\\r\\n]", "");
+
+        }
+        public string GetContactInformationFromTableReverse(int index)
+        {
+            manager.Navigate.GoToContactPage();
+            IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index].FindElements(By.TagName("td"));
+
+            string firstName = cells[2].Text;
+            string lastName = cells[1].Text;
+            string address = cells[3].Text;
+            string allPhones = cells[5].Text;
+            string fullData = firstName + lastName + address + allPhones;
+            return Regex.Replace(fullData, "[ \\r\\n]", "");
+        }
+
+    public void ClickFullInformationButton(int index)
+        {
+            driver.FindElement(By.XPath("(//img[@alt='Details'])[" + (index + 1) + "]")).Click();
+        }
+
         public ContactData GetContactCountInformationFromTable(int index)
         {
             manager.Navigate.GoToContactPage();
