@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using System;
 
 namespace WebAddressbookTests
 {
@@ -7,14 +8,29 @@ namespace WebAddressbookTests
     public class GroupCreationTests : AuthTestBase
     {
        
+        public static IEnumerable<GroupData> RandomGroupDataProvider()
+        {
+            List<GroupData> groups = new List <GroupData>();
+            for (int i=0; i < 5; i++)
+            {
+                groups.Add(new GroupData(GenerateRandomString(30))
+                {
+                    Header = GenerateRandomString(100),
+                    Footer = GenerateRandomString(100)
+                });
+            }
+            return groups;
+        }
 
-        [Test]
-        public void CreatesGroup()
+        
+
+        [Test, TestCaseSource("RandomGroupDataProvider")]
+        public void CreatesGroup(GroupData group)
         {
             
-            GroupData group = new GroupData("aaa");
-            group.Header = "dddd";
-            group.Footer = "fff";
+          //  GroupData group = new GroupData("aaa");
+          //  group.Header = "dddd";
+          // group.Footer = "fff";
 
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
@@ -31,7 +47,7 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldGroups, newGroups);
           //  app.Auth.LogOut();
         }
-        [Test]
+/*       [Test]
         public void CreatesEmptyGroup()
         {
             
@@ -50,8 +66,8 @@ namespace WebAddressbookTests
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
             // app.Auth.LogOut();
-        }
-
+        } */
+           
         [Test]
         public void CreatesBadNameGroup()
         {
