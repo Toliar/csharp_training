@@ -47,7 +47,9 @@ namespace WebAddressbookTests
             ClickFullInformationButton(index);
             
             IWebElement element = driver.FindElement(By.Id("content"));
-            return Regex.Replace(element.Text, "[H:M:W:F: ()\\-\\r\\n]", "");
+            string s = Regex.Replace(element.Text, "[ ()\\-\\r\\n]", "");
+            
+            return Regex.Replace(s, "(H+:)|(M+:)|(W+:)", "");
 
         }
         public string GetContactInformationFromTableReverse(int index)

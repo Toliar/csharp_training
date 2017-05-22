@@ -25,7 +25,7 @@ namespace WebAddressbookTests
         [Test]
         public void TestDetailedContactInformationReverse()
         {
-            int index = 3;
+            int index = 0;
 
             string fromTableReverse = app.Contacts.GetContactInformationFromTableReverse(index);
             string fromDetailedInfoReverse = app.Contacts.GetContactInformationFromDetailedFormReverse(index);
