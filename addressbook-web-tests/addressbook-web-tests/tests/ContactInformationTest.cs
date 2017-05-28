@@ -1,9 +1,4 @@
 ﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
@@ -27,11 +22,11 @@ namespace WebAddressbookTests
         {
             int index = 0;
 
-            string fromTableReverse = app.Contacts.GetContactInformationFromTableReverse(index);
+            string fromEditFormReverse = app.Contacts.GetContactInformationFromEditFormReverse(index);
             string fromDetailedInfoReverse = app.Contacts.GetContactInformationFromDetailedFormReverse(index);
 
             //verification
-            Assert.AreEqual(fromTableReverse, fromDetailedInfoReverse);
+            Assert.AreEqual(fromEditFormReverse, fromDetailedInfoReverse);
            
         }
     }
