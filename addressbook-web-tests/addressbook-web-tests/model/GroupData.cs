@@ -4,9 +4,12 @@ namespace WebAddressbookTests
 {
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
-      //  private string name;
-      //  private string header=""; поле
-      // private string footer = "";
+        //  private string name;
+        //  private string header=""; поле
+        // private string footer = "";
+        public GroupData()
+        {
+        }
         public GroupData(string name)
         //свойство Name
         {
