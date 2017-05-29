@@ -69,7 +69,12 @@ namespace addressbook_test_data_generators
                 sheet.Cells[row, 3] = group.Footer;
                 row++; 
             }
-
+            string fullPath = Path.Combine(Directory.GetCurrentDirectory(), filename);
+            File.Delete(fullPath);
+            wb.SaveAs(fullPath);
+            wb.Close();
+            app.Visible = false;
+            //12.46
 
         }
 
