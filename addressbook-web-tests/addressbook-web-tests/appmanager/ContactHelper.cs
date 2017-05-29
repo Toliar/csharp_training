@@ -47,9 +47,9 @@ namespace WebAddressbookTests
             ClickFullInformationButton(index);
             
             IWebElement element = driver.FindElement(By.Id("content"));
-            string s = Regex.Replace(element.Text, "[ ()\\-\\r\\n]", "");
+            return Regex.Replace(element.Text, "[ ()\\-\\r\\n]", "");
             
-            return Regex.Replace(s, "(H+:)|(M+:)|(W+:)", "");
+           // return Regex.Replace(s, "(H+:)|(M+:)|(W+:)", "");
 
         }
         public string GetContactInformationFromTableReverse(int index)
@@ -74,9 +74,17 @@ namespace WebAddressbookTests
             string address = driver.FindElement(By.Name("address")).GetAttribute("value");
 
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
+            if (!string.IsNullOrEmpty(homePhone))  homePhone = "H: " + homePhone;
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            if (!string.IsNullOrEmpty(mobilePhone))  mobilePhone = "M: " + mobilePhone;
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
-            string fullData = firstName + lastName + address + homePhone + mobilePhone + workPhone;
+            if (!string.IsNullOrEmpty(workPhone)) workPhone = "W: " + workPhone;
+
+            string email = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+
+            string fullData = firstName + lastName + address + homePhone + mobilePhone + workPhone+ email+ email2+ email3;
             return Regex.Replace(fullData, "[ \\r\\n]", "");
         }
 
