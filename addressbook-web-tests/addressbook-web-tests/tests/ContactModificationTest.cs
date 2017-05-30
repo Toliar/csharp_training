@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactModificationTest : AuthTestBase
+    public class ContactModificationTest : ContactTestBase
     {
         [Test]
         public void ContactModificationTests()
@@ -22,17 +22,19 @@ namespace WebAddressbookTests
 
                 app.Contacts.CreateContact(defaultcontact);
             }
+
             ContactData changedcontact= new ContactData();
             changedcontact.Firstname = "4444";
             changedcontact.Lastname = "55555";
 
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAllFromDB();
+            ContactData toBeModified = oldContacts[0];
 
-            app.Contacts.ModifyContact(changedcontact);
+            app.Contacts.ModifyContact(toBeModified, changedcontact);
 
             Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactCount());
 
-            List<ContactData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAllFromDB();
             oldContacts[0] = changedcontact;
             oldContacts.Sort();
             newContacts.Sort();

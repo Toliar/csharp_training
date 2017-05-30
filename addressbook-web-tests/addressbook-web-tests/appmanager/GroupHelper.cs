@@ -34,7 +34,19 @@ namespace WebAddressbookTests
             return this;
         }
 
-        
+        public GroupHelper Modify(GroupData groupToModify, GroupData newData)
+        {
+            manager.Navigate.GoToGroupPage();
+            SelectGroup(groupToModify.Id);
+            InitGroupModification();
+            FillGroupForm(newData);
+            SubmitGroupModification();
+            ReturnToGroupPage();
+
+            return this;
+        }
+
+       
 
         internal int GetGroupCount()
         {

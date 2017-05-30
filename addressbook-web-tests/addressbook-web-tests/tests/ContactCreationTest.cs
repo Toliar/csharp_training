@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactCreationTest : AuthTestBase
+    public class ContactCreationTest : ContactTestBase
     {
         public static IEnumerable<ContactData> RandomContactDataProvider()
         {
@@ -45,7 +45,7 @@ namespace WebAddressbookTests
            // newcontact.Firstname = "first";
            // newcontact.Lastname = "last";
 
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAllFromDB();
 
             app.Contacts.CreateContact(newcontact);
             // app.Auth.LogOut();
@@ -53,7 +53,7 @@ namespace WebAddressbookTests
             
             Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactCount());
 
-            List<ContactData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAllFromDB();
             oldContacts.Add(newcontact);
             oldContacts.Sort();
             newContacts.Sort();

@@ -41,6 +41,8 @@ namespace WebAddressbookTests
             };
         }
 
+        
+
         public void AddContactToGroup(ContactData contact, GroupData group)
         {
             manager.Navigate.GoToContactPage();
@@ -154,6 +156,15 @@ namespace WebAddressbookTests
           //  manager.Auth.LogOut();
             return this;
         }
+        public ContactHelper DeleteContact(ContactData toBeRemoved)
+        {
+            manager.Navigate.GoToContactPage();
+            SelectContact(toBeRemoved.Id);
+            ClickDeleteButton();
+            driver.SwitchTo().Alert().Accept();
+            //  manager.Auth.LogOut();
+            return this;
+        }
 
         public int GetContactCount()
         {
@@ -194,6 +205,24 @@ namespace WebAddressbookTests
             //    manager.Auth.LogOut();
             return this;
         }
+
+        public ContactHelper ModifyContact(ContactData toBeModified, ContactData newData)
+        {
+            manager.Navigate.GoToContactPage();
+            InitContactModification(toBeModified.Id);
+            ModifyContactData(newData);
+            FindElementByName("update").Click();
+            
+            //    manager.Auth.LogOut();
+            return this;
+        }
+
+        public ContactHelper InitContactModification(string id)
+        {
+            driver.FindElement(By.XPath(String.Format("//a[@href='edit.php?id={0}']", id))).Click();
+            return this;
+        }
+
         public ContactHelper ModifyContactData(ContactData contactdata)
         {
             Type(By.Name("firstname"), contactdata.Firstname);

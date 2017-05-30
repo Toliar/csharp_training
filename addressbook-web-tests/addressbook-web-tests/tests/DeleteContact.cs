@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class DeleteContact : AuthTestBase
+    public class DeleteContact : ContactTestBase
     {
         [Test]
         public void DeleteContactTest()
@@ -23,12 +23,13 @@ namespace WebAddressbookTests
 
                 app.Contacts.CreateContact(defaultcontact);
             }
-            List<ContactData> oldContacts = app.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAllFromDB();
+            ContactData toBeRemoved = oldContacts[0];
 
-            app.Contacts.DeleteContact(index);
+            app.Contacts.DeleteContact(toBeRemoved);
 
             Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactCount());
-            List<ContactData> newContacts = app.Contacts.GetContactList();
+            List<ContactData> newContacts = ContactData.GetAllFromDB();
             oldContacts.RemoveAt(index-1);
          //   oldContacts.Sort();
           //  newContacts.Sort();
