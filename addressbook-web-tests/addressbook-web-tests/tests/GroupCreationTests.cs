@@ -6,6 +6,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Excel = Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace WebAddressbookTests
 {
@@ -145,7 +146,22 @@ namespace WebAddressbookTests
             Assert.AreEqual(oldGroups, newGroups);
             // app.Auth.LogOut();
         }
+        [Test]
+        public void TestDBConnectivity()
+        {
+            DateTime start = DateTime.Now;
+            List<GroupData> fromUI = app.Groups.GetGroupList();
+            DateTime end = DateTime.Now;
+            Console.Out.WriteLine(end.Subtract(start));
 
+            start = DateTime.Now;
+
+            List<GroupData> fromDB = GroupData.GetAllFromDB();
+
+            end = DateTime.Now;
+            Console.Out.WriteLine(end.Subtract(start));
+           // Assert.AreEqual(fromUI, fromDB);
+        }
 
 
 
