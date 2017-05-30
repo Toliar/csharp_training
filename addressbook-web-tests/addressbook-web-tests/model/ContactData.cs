@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using LinqToDB.Mapping;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WebAddressbookTests
 {
@@ -27,6 +29,8 @@ namespace WebAddressbookTests
 
         [Column(Name = "id"),PrimaryKey]
         public string Id { get; set; }
+        [Column(Name = "deprecated")]
+        public string Deprecated { get; set; }
 
         public string Address { get; set; }
         public string HomePhone { get; set; }
@@ -98,6 +102,13 @@ namespace WebAddressbookTests
                 return this.Lastname.CompareTo(other.Lastname);
             }
             return this.Firstname.CompareTo(other.Firstname);
+        }
+        public static List<ContactData> GetAllFromDB()
+        {
+            using (AddressbookDB db = new AddressbookDB())
+            {
+                return (from c in db.Contacts.Where(x=> x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
+            }
         }
     }
 }
