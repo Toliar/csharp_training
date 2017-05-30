@@ -8,6 +8,7 @@ using WebAddressbookTests;
 using System.Xml;
 using System.Xml.Serialization;
 using Excel = Microsoft.Office.Interop.Excel;
+using Newtonsoft.Json;
 namespace addressbook_test_data_generators
 {
     class Program
@@ -34,21 +35,26 @@ namespace addressbook_test_data_generators
             }
             else
             {
-                StreamWriter writer = new StreamWriter(filename);
-                if (format == "csv")
+                using (StreamWriter writer = new StreamWriter(filename))
                 {
-                    writeGroupsToCsvFile(groups, writer);
+                    if (format == "csv")
+                    {
+                        writeGroupsToCsvFile(groups, writer);
+                    }
+                    else if (format == "xml")
+                    {
+                        writeGroupsToXmlFile(groups, writer);
+                    }
+                    else if (format == "json")
+                    {
+                        writeGroupsToJsonFile(groups, writer);
+                    }
+                    else
+                    {
+                        Console.Out.Write("Unrecognized format " + format);
+                    }
                 }
-                else if (format == "xml")
-                {
-                    writeGroupsToXmlFile(groups, writer);
-                }
-                else
-                {
-                    Console.Out.Write("Unrecognized format " + format);
-                }
-
-                writer.Close();
+              //  writer.Close();
 
             }
          
@@ -59,7 +65,7 @@ namespace addressbook_test_data_generators
             Excel.Application app = new Excel.Application();
             app.Visible = true;
             Excel.Workbook wb = app.Workbooks.Add();
-            Excel.Worksheet sheet = wb.ActiveSheet();
+            Excel.Worksheet sheet = wb.ActiveSheet;
             // sheet.Cells[1, 1] = "test";
             int row = 1;
             foreach (GroupData group in groups)
@@ -74,6 +80,7 @@ namespace addressbook_test_data_generators
             wb.SaveAs(fullPath);
             wb.Close();
             app.Visible = false;
+            app.Quit();
             //12.46
 
         }
@@ -90,6 +97,10 @@ namespace addressbook_test_data_generators
         static void writeGroupsToXmlFile(List<GroupData> groups, StreamWriter writer)
         {
             new XmlSerializer(typeof(List<GroupData>)).Serialize(writer, groups);
+        }
+        static void writeGroupsToJsonFile(List<GroupData> groups, StreamWriter writer)
+        {
+            writer.Write(JsonConvert.SerializeObject(groups, Newtonsoft.Json.Formatting.Indented));    
         }
     }
 }
