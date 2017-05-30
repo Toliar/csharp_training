@@ -78,7 +78,7 @@ namespace WebAddressbookTests
             ClickFullInformationButton(index);
             
             IWebElement element = driver.FindElement(By.Id("content"));
-            return Regex.Replace(element.Text, "[ ()\\-\\r\\n]", "");
+            return Regex.Replace(element.Text, "[ \\r\\n]", "");
             
            // return Regex.Replace(s, "(H+:)|(M+:)|(W+:)", "");
 
