@@ -5,26 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace WebAddressbookTests 
+namespace WebAddressbookTests
 {
-    public class AddingContactToGroupTests : AuthTestBase
+    class DeleteContactFromGroup : AuthTestBase
     {
         [Test]
-        public void TestAddingContactToGroup()
+        public void TestDeleteContactFromGroup()
         {
             GroupData group = GroupData.GetAllFromDB()[0];
             List<ContactData> oldList = group.GetContacts();
-            ContactData contact = ContactData.GetAllFromDB().Except(oldList).First();
+            ContactData contact = ContactData.GetAllFromDB().Intersect(oldList).First();
 
-            app.Contacts.AddContactToGroup(contact, group);
+            app.Contacts.RemoveContactFromGroup(contact, group);
+
             List<ContactData> newList = group.GetContacts();
-            oldList.Add(contact);
+            oldList.Remove(contact);
             newList.Sort();
             oldList.Sort();
 
             Assert.AreEqual(oldList, newList);
-
         }
-
     }
 }

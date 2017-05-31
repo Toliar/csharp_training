@@ -93,6 +93,7 @@
     <Compile Include="tests\ContactModificationTest.cs" />
     <Compile Include="tests\ContactTestBase.cs" />
     <Compile Include="tests\DeleteContact.cs" />
+    <Compile Include="tests\DeleteContactFromGroup.cs" />
     <Compile Include="tests\DeleteGroup.cs" />
     <Compile Include="tests\GroupModificationTests.cs" />
     <Compile Include="model\AccountData.cs" />
