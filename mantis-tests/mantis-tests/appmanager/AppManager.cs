@@ -18,6 +18,7 @@ namespace mantis_tests
 
         public RegistrationHelper Registration { get;  set; }
         internal FtpHelper Ftp { get;  set; }
+        public JamesHelper James { get; set; }
 
         //   protected LoginHelper loginHelper;
 
@@ -30,6 +31,7 @@ namespace mantis_tests
             baseURL = "http://localhost:8889/";
             Registration = new RegistrationHelper(this);
             Ftp = new FtpHelper(this);
+            James = new JamesHelper(this);
 
  
         }

@@ -31,6 +31,9 @@ namespace mantis_tests
             Email = "testuser@localhost.localdomain"
         };
 
+        app.James.Delete(account);
+        app.James.Delete(account);
+
         app.Registration.Register(account);
      }
         [TestFixtureTearDown]
