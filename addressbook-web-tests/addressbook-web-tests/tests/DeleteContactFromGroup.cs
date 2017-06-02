@@ -14,6 +14,16 @@ namespace WebAddressbookTests
         {
             GroupData group = GroupData.GetAllFromDB()[0];
             List<ContactData> oldList = group.GetContacts();
+           
+            if (!ContactData.GetAllFromDB().Intersect(oldList).Any())
+            {
+                GroupData group1 = GroupData.GetAllFromDB()[0];
+                ContactData contact1 = ContactData.GetAllFromDB().Except(oldList).First();
+
+                app.Contacts.AddContactToGroup(contact1, group1);
+            }
+            
+            
             ContactData contact = ContactData.GetAllFromDB().Intersect(oldList).First();
 
             app.Contacts.RemoveContactFromGroup(contact, group);
