@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace mantis_tests
 {
-    class LoginHelper : HelperBase
+    public class LoginHelper : HelperBase
     {
         public LoginHelper(AppManager manager) : base(manager)
         {

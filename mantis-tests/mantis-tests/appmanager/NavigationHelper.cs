@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace mantis_tests
 {
-    class NavigationHelper : HelperBase
+    public class NavigationHelper : HelperBase
     {
         private string baseURL;
         public NavigationHelper(AppManager manager, string baseURL) : base(manager)
@@ -17,7 +17,7 @@ namespace mantis_tests
 
        public void OpenManagePage()
         {
-            driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[7]/a/i")).Click();
+            driver.FindElement(By.LinkText("Manage")).Click();
         }
         public void OpenProjectManagePage()
         {
@@ -27,9 +27,17 @@ namespace mantis_tests
         public void GoToMainPage()
         {
 
-            driver.Navigate().GoToUrl(baseURL + "mantisbt-2.4.1/login_page.php");
-        }
+            driver.Navigate().GoToUrl(baseURL + "mantisbt-2.4.1/");
 
+        }
+        public void OpenMainPage()
+        {
+            if (driver.Url == baseURL + "addressbook/")
+            {
+                return;
+            }
+            Navigate(baseURL + "addressbook/");
+        }
 
     }
 }

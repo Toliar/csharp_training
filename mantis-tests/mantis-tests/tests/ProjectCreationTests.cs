@@ -7,16 +7,27 @@ namespace mantis_tests
 {
   
     [TestFixture]
-    public class ProjectCreationTests : TestBase
+    public class ProjectCreationTests : AuthTestBase
     {
        
 
         [Test]
         public void ProjectCreationTest()
         {
-            ProjectData newProject = new ProjectData { Name = "213213" };
+
+            ProjectData newProject = new ProjectData { Name = GenerateRandomString(10) };
+            List<ProjectData> oldProjects = app.Project.GetProjectList();
 
             app.Project.Create(newProject);
+
+            List<ProjectData> newProjects = app.Project.GetProjectList();
+
+            oldProjects.Add(newProject);
+            oldProjects.Sort();
+            newProjects.Sort();
+
+            Assert.AreEqual(oldProjects, newProjects);
+
 
         }
     }

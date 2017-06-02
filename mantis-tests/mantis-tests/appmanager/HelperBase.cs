@@ -35,7 +35,10 @@ namespace mantis_tests
                 return false;
             }
         }
-       
+        protected void Navigate(string url)
+        {
+            driver.Navigate().GoToUrl(url);
+        }
 
 
     }
