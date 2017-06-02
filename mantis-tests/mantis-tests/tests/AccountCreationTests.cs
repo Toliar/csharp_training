@@ -8,7 +8,7 @@ namespace mantis_tests
 { 
     
     [TestFixture]
-    public class AccountCreationTests : TestBase
+    public class AccountCreationTests : TestBase 
     {
         [TestFixtureSetUp]
         public void setUpConfig()
@@ -42,6 +42,6 @@ namespace mantis_tests
             app.Ftp.RestoreBackupFile("/config_inc.php");
         }
 
-
+    
     }
 }
