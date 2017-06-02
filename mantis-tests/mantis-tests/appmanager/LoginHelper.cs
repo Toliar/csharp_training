@@ -16,10 +16,25 @@ namespace mantis_tests
 
         public void Login()
         {
-            driver.FindElement(By.Id("username")).SendKeys("administrator");
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
-            driver.FindElement(By.Id("password")).SendKeys("root");
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+            if (!IsUserLoggedAsAdministrator())
+            {
+                driver.FindElement(By.Id("username")).SendKeys("administrator");
+                driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+                driver.FindElement(By.Id("password")).SendKeys("root");
+                driver.FindElement(By.XPath("//input[@value='Login']")).Click();
+            }
+
+        }
+        public bool IsUserLoggedAsAdministrator()
+        {
+            var locator = "//span[@class='user-info']";
+            bool isLogged = IsElementPresent(By.XPath(locator));            
+
+            if (isLogged)
+                if (driver.FindElement(By.XPath("//span[@class='user-info']")).Text == "administrator")
+                    return true;
+
+            return false;
         }
     }
 }
