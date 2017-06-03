@@ -44,15 +44,16 @@ namespace mantis_tests
                 tempData.Id = project.id;
                 tempData.Name = project.name;
                 existingProjects.Add(tempData);
-               // System.Console.Out.WriteLine(existingProjects.ToString());
+                System.Console.Out.WriteLine(tempData.Id + tempData.Name);
             }
             return existingProjects;
         }
         public void CreateProjectByAPI(ProjectData project,AccountData account)
         {
             Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
-            Mantis.ProjectData
-            client.mc_project_add(account.Name,account.Password,)
+            Mantis.ProjectData mProject = new Mantis.ProjectData();
+            mProject.name = project.Name;
+            client.mc_project_add(account.Name, account.Password, mProject);
         }
 
         public List<AccountData> GetAllAccounts()

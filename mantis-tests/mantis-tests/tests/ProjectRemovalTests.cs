@@ -16,15 +16,15 @@ namespace mantis_tests
         {
             int index = 0;
             
-            List<ProjectData> oldProjects = app.Project.GetProjectList();
+            List<ProjectData> oldProjects = app.API.GetAllProjectsByApi(new AccountData()); ;
             if (!app.Project.IsFirstContactExist(index))
             {
                 ProjectData newProject = new ProjectData { Name = GenerateRandomString(10) };
-                app.Project.Create(newProject);
+                app.API.CreateProjectByAPI(newProject, new AccountData());
             }
                 app.Project.Remove(index);
 
-            List<ProjectData> newProjects = app.Project.GetProjectList();
+            List<ProjectData> newProjects = app.API.GetAllProjectsByApi(new AccountData()); ;
 
             oldProjects.RemoveAt(index);
             oldProjects.Sort();
