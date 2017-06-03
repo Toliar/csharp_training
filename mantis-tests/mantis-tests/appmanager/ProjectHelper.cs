@@ -20,10 +20,11 @@ namespace mantis_tests
             return this;
         }
 
-        internal bool IsFirstContactExist(int index)
+        internal bool IsFirstProjecttExist(int index)
         {
-                            
-             return IsElementPresent(By.CssSelector("div.widget-box:nth-of-type(2) table tbody tr a[href]"));
+            manager.Navigate.OpenManagePage();
+            manager.Navigate.OpenProjectManagePage();
+            return IsElementPresent(By.CssSelector("div.widget-box:nth-of-type(2) table tbody tr a[href]"));
                 
         }
 

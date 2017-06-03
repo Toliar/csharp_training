@@ -16,8 +16,8 @@ namespace mantis_tests
         {
             int index = 0;
             
-            List<ProjectData> oldProjects = app.API.GetAllProjectsByApi(new AccountData()); ;
-            if (!app.Project.IsFirstContactExist(index))
+            List<ProjectData> oldProjects = app.API.GetAllProjectsByApi(new AccountData()); 
+            if (!app.Project.IsFirstProjecttExist(index))
             {
                 ProjectData newProject = new ProjectData { Name = GenerateRandomString(10) };
                 app.API.CreateProjectByAPI(newProject, new AccountData());

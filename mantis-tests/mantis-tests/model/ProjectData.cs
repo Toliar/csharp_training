@@ -36,7 +36,7 @@ namespace mantis_tests
         }
         public override string ToString()
         {
-            return Id +"/r/n" + Name;
+            return  Name;
         }
 
 

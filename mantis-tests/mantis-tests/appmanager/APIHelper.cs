@@ -35,16 +35,16 @@ namespace mantis_tests
             Mantis.MantisConnectPortTypeClient client = new Mantis.MantisConnectPortTypeClient();
             List<ProjectData> existingProjects = new List<ProjectData>();
             Mantis.ProjectData[] exProjects = client.mc_projects_get_user_accessible(userData.Name, userData.Password);
-            
-            
+            ProjectData tempData = new ProjectData();
+
             foreach (Mantis.ProjectData project in exProjects)
             {
-                ProjectData tempData = new ProjectData();
+                
                 
                 tempData.Id = project.id;
                 tempData.Name = project.name;
                 existingProjects.Add(tempData);
-                System.Console.Out.WriteLine(tempData.Id + tempData.Name);
+               // System.Console.Out.WriteLine(tempData.Id + tempData.Name);
             }
             return existingProjects;
         }
