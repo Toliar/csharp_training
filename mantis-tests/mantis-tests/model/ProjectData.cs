@@ -11,6 +11,7 @@ namespace mantis_tests
     {
 
         public string Name { get; set; }
+        public string Id { get; set; }
 
         public int CompareTo(ProjectData other)
         {
@@ -33,5 +34,11 @@ namespace mantis_tests
             }
             return Name == other.Name;
         }
+        public override string ToString()
+        {
+            return Id +"/r/n" + Name;
+        }
+
+
     }
 }

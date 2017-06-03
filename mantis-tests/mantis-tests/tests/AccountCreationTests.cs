@@ -24,6 +24,7 @@ namespace mantis_tests
         [Test]
      public void TestAccountReistration()
      {
+            List<AccountData> accounts = app.Admin.GetAllAccounts();
         AccountData account = new AccountData()
         {
             Name = "testuser",

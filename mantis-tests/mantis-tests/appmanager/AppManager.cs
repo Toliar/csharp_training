@@ -28,7 +28,8 @@ namespace mantis_tests
         public LoginHelper Login { get;  set; }
         public NavigationHelper Navigate { get;  set; }
         public MailHelper Mail { get; set; }
-
+        public AdminHelper Admin { get;  set; }
+        public APIHelper API { get; set; }
 
         //   protected LoginHelper loginHelper;
 
@@ -48,6 +49,8 @@ namespace mantis_tests
             Login = new LoginHelper(this);
             Navigate = new NavigationHelper(this, baseURL);
             Project = new ProjectHelper(this);
+            Admin = new AdminHelper(this, baseURL);
+            API = new APIHelper(this);
             //Mail = new MailHelper(this);
 
 
