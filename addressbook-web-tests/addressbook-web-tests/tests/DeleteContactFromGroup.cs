@@ -12,9 +12,25 @@ namespace WebAddressbookTests
         [Test]
         public void TestDeleteContactFromGroup()
         {
+
+            if (!ContactData.GetAllFromDB().Any())
+            {
+                ContactData defaultcontact = new ContactData();
+                defaultcontact.Firstname = "first1";
+                defaultcontact.Lastname = "last1";
+
+                app.Contacts.CreateContact(defaultcontact);
+            }
+
+            if (!GroupData.GetAllFromDB().Any())
+            {
+                GroupData defaultData = new GroupData("1111");
+                app.Groups.Create(defaultData);
+            }
+
             GroupData group = GroupData.GetAllFromDB()[0];
             List<ContactData> oldList = group.GetContacts();
-           
+
             if (!ContactData.GetAllFromDB().Intersect(oldList).Any())
             {
                 GroupData group1 = GroupData.GetAllFromDB()[0];
@@ -22,8 +38,8 @@ namespace WebAddressbookTests
 
                 app.Contacts.AddContactToGroup(contact1, group1);
             }
-            
-            
+
+            oldList = group.GetContacts();
             ContactData contact = ContactData.GetAllFromDB().Intersect(oldList).First();
 
             app.Contacts.RemoveContactFromGroup(contact, group);
