@@ -37,9 +37,10 @@ namespace WebAddressbookTests
                 ContactData contact1 = ContactData.GetAllFromDB().Except(oldList).First();
 
                 app.Contacts.AddContactToGroup(contact1, group1);
+                oldList = group.GetContacts();
             }
 
-            oldList = group.GetContacts();
+            
             ContactData contact = ContactData.GetAllFromDB().Intersect(oldList).First();
 
             app.Contacts.RemoveContactFromGroup(contact, group);
